@@ -7,18 +7,18 @@ var UserSchema = new Schema({
     type: String,
     lowercase: true,
     trim: true,
-    required: [true, "Digite um nome de usuário"],
-    unique: [true, "Já existe um usuário com esse nome"]
+    required: [true, "É requerido um nome de usuário."],
+    unique: [true, "Usuário deve ser único"]
   },
-  email: {
+  mail: {
     type: String,
-    required: [true, "Digite um endereço de email"],
-    unique: [true, "Já existe um usuário com esse email"]
+    required: [true, "É obrigatório o uso de e-email."],
+    unique: [true, "E-mail já cadastrado."]
   },
-  password: {
+  pass: {
     type: String,
-    required: [true, "Cadastre uma senha"],
-    min: [4, "Digite pelo menos 4 caracteres"],
+    required: [true, "Defina um senha."],
+    min: [6, "Use ao menos 6 caracteres."],
     max: 12
   },
   friends: [{ type: Schema.Types.ObjectId, ref: "User" }]

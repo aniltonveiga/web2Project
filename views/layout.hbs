@@ -2,64 +2,90 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <title>Chat</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <title>{{title}}</title>
+
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-        <!-- Brand -->
-        <a class="navbar-brand" href="#">Chat</a>
+  <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+    <!-- Brand -->
+    <a class="navbar-brand" href="#">Chat</a>
 
-        <!-- Toggler/collapsibe Button -->
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+    <!-- Toggler/collapsibe Button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-        <!-- Navbar links -->
-        <div class="collapse navbar-collapse" id="collapsibleNavbar">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+    <!-- Navbar links -->
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+      <ul class="navbar-nav">
+        {{#unless logado }}<li class="nav-item"> <a class="nav-link" href="/">Home</a></li>{{/unless}}
+        {{#unless logado }}<li class="nav-item"> <a class="nav-link" href="/users/cadastrar">Register</a></li>
+        {{/unless}}
+        {{#if logado }}<li class="nav-item"> <a class="nav-link" href="/users/amigos">Friends</a> </li>
+        <form action="/users/busca?q=" id="busca" id="termo" class="form-inline float-right">
+          <input id="termo" class="form-control mr-sm-2" type="search" placeholder="Digite..." aria-label="Search">
+          <button data-toggle="modal" data-target="#exampleModalCenter" class="btn btn-outline-success my-2 my-sm-0"
+            type="submit">Bucar</button>
+        </form>
+        {{/if}}
+        {{#if logado }}
+        <li class="nav-item"> <a class="nav-link" href="/users/sair">Logout</a></li>
+        {{/if}}
+      </ul>
 
-    <div class="card">
-        <div class="card-body">
-            <form action="/action_page.php">
-                <div class="form-group">
-                    <label for="name">Username:</label>
-                    <input type="text" class="form-control" id="name">
-                </div>
-                <div class="form-group">
-                    <label for="pwd">Password:</label>
-                    <input type="password" class="form-control" id="pwd">
-                </div>
-                <button type="submit" class="btn btn-dark">Submit</button>
-            </form>
-        </div>
-        {{!-- <div class="card-footer">Footer</div> --}}
+
     </div>
+  </nav>
 
-    <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <div class="card">
+    {{{body}}}
+  </div>
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <iframe frameBorder="0" id="modal" src=""></iframe>
+        </div>
+      </div>
 
-    <!-- Popper JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    </div>
+  </div>
+  </div>
 
-    <!-- Latest compiled JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script>
+    var modal = document.querySelector('#modal');
+
+    (function () {
+      let form = document.querySelector('#busca'),
+        busca = document.querySelector('#termo');
+
+
+      form.addEventListener("submit", function (ev) {
+        ev.preventDefault();
+        modal.src = form.getAttribute('action') + busca.value;
+      })
+    }())
+  </script>
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+  <!-- Popper JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
 
 </html>
