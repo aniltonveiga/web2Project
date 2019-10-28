@@ -3,7 +3,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get("/", function(req, res, next) {
-  res.render("index", { title: "Chat Legal!!", logado: req.session.key });
+  res.render("index", { title: "Chat", logado: req.session.key });
 });
 
 module.exports = router;
