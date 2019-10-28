@@ -1,0 +1,29 @@
+<h1>{{#if logado}} Amigos de {{logado}} {{/if}} </h1>
+<div class="row">
+    <div class="col-md-4">
+        <ul class="list-group">
+            {{#amigos}}
+            <li class="list-group-item">{{this.user}}
+                <button type="button" onclick="chat('{{this.id}}');" class="btn btn-primary">Conversar</button>
+            </li>
+            {{/amigos}}
+        </ul>
+    </div>
+    <div class="col-md-8">
+        <iframe style="outline: 1px solid red, width: 100%" id="janela" src=""></iframe></div>
+
+
+</div>
+
+
+
+
+
+
+<script>
+    var resposta = document.querySelector('#janela');
+    function chat(id) {
+        resposta.src = '/chat?id=' + id;
+    }
+
+</script>
