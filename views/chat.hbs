@@ -1,10 +1,11 @@
-
 <style>
     #msgs {
         padding-bottom: 10px;
         border: 2px
     }
+
     #formMsg {
+        background-color: #fff;
         width: 100%;
         position: fixed;
         bottom: 0px;
@@ -12,11 +13,11 @@
     }
 
     #txtMsg {
-        width: 80%;
         border: none;
-        border-top: 1px solid rgba(0, 0, 0, .125);
-        border-top-left-radius: .25rem;
+        border: 1px solid rgba(0, 0, 0, .125);
+        border-radius: .25rem;
         padding: 0 10px;
+        width: 100%;
     }
 
     #btnEnviar {
@@ -65,12 +66,16 @@
     {{/ifEquals}}
     {{/msgs}}
 </div>
-<form name="formMsg" id="formMsg" onsubmit="return validateForm()" action="/chat?id={{idGet}}" method="POST" enctype="multipart/form-data">
-    <label>
+
+<form name="formMsg" id="formMsg" onsubmit="return validateForm()" action="/chat?id={{idGet}}" method="POST"
+    enctype="multipart/form-data">
+    <label class="d-flex flex-row">
         <input id="txtMsg" name="msg" type="text required ">
-        <input id="video" name="video" type="file">
         <input class="btn btn-dark" id="btnEnviar" type="submit" value="Send">
     </label>
+    <input id="video" name="video" type="file">
+
+
 </form>
 
 <script>
