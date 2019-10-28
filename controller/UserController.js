@@ -20,14 +20,14 @@ exports.create_user = function(req, res) {
       }
       if (err.code === 11000) {
         if (i > 0) erros += ", ";
-        erros += JSON.stringify({ message: "Usuário ou email já cadastrado" });
+        erros += JSON.stringify({ message: "Username or E-mail already exists." });
       }
       erros += "]";
       res.send(erros);
       return console.log(err);
     }
     res.send(
-      "[" + JSON.stringify({ message: "Cadastrado com sucesso." }) + "]"
+      "[" + JSON.stringify({ message: "Registered Successfully." }) + "]"
     );
   });
 };
@@ -37,7 +37,7 @@ exports.show_friends = function(req, res) {
     userModel.findOne({ user: req.session.key }, function(err, doc) {
       if (err || doc === null) {
         return res.send(
-          "[" + JSON.stringify({ message: "Erro no banco de dados" }) + "]"
+          "[" + JSON.stringify({ message: "Database error." }) + "]"
         );
       }
 
@@ -68,14 +68,14 @@ exports.login = function(req, res) {
   console.log(user, pass);
 
   if (user.length === 0 || pass.length === 0) {
-    return res.send('[{"message": "Nenhum campo pode estar vazio"}]');
+    return res.send('[{"message": "All fields are required."}]');
   }
 
   userModel.findOne({ user: user }, function(err, doc) {
     console.log(err, doc);
     if (err || doc === null) {
       return res.send(
-        "[" + JSON.stringify({ message: "Dados incorretos" }) + "]"
+        "[" + JSON.stringify({ message: "Username or password incorrect." }) + "]"
       );
     }
     if (doc.pass === pass) {
@@ -83,7 +83,7 @@ exports.login = function(req, res) {
       res.send("[" + JSON.stringify({ message: "Sucesso" }) + "]");
     } else {
       return res.send(
-        "[" + JSON.stringify({ message: "Dados incorretos" }) + "]"
+        "[" + JSON.stringify({ message: "Username or password incorrect." }) + "]"
       );
     }
   });
@@ -109,7 +109,7 @@ exports.buscar = function(req, res) {
         if (err) console.log(err);
 
         if (doc == undefined) {
-          return res.send('<p style="color:#fff;">Nada encontrado</p>');
+          return res.send('<p style="color:#fff;">Nothing Found</p>');
         }
         console.log(doc);
         res.render("search", { resultados: doc, layout: "search" });
@@ -125,14 +125,14 @@ exports.addUser = function(req, res) {
     userModel.findOne({ user: req.session.key }, function(err, doc) {
       if (err || doc === null) {
         return res.send(
-          "[" + JSON.stringify({ message: "Erro no banco de dados" }) + "]"
+          "[" + JSON.stringify({ message: "Database error." }) + "]"
         );
       }
 
       doc.friends.push({ _id: id });
 
       doc.save(function() {
-        res.send('<p style="color:#fff;">Amigo adicionado com sucesso</p>');
+        res.send('<p style="color:#fff;">Friend added</p>');
       });
     });
   } else {

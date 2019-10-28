@@ -12,7 +12,7 @@ exports.create_message = function(req, res) {
     if (req.session && req.session.key) {
         User.findOne({"user": sender}, function(err,doc){
             if(err || doc === null){
-                return res.send('['+JSON.stringify({message: "Erro no banco de dados"})+']');
+                return res.send('['+JSON.stringify({message: "Database error."})+']');
             }
             
             if(msg.length > 0){
