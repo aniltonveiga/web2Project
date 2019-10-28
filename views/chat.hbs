@@ -19,10 +19,21 @@
 
     #txtMsg {
         width: 80%;
+        border: none;
+        border-top: 1px solid rgba(0, 0, 0, .125);
+        border-top-left-radius: .25rem;
+        padding: 0 10px;
     }
 
     #btnEnviar {
         width: 20%;
+        cursor: pointer;
+        color: #fff;
+        background-color: #343a40;
+        border: none;
+        border-top-right-radius: .25rem;
+        border-bottom-right-radius: .25rem;
+        text-align: center;
     }
 
     .send {
@@ -44,10 +55,11 @@
     .received span {
         padding: 5px;
         border-radius: 5px;
-        background-color: #f8f1c6;
+        background-color: #c5c5c5;
     }
 </style>
-<div id="msgs" style="border-width: 1;">
+
+<div id="msgs">
 
     {{#msgs }}
     {{#ifEquals ../idGet this.sender }}
@@ -62,6 +74,6 @@
 </div>
 <form id="formMsg" action="/chat?id={{idGet}}" method="POST">
     <label>
-        <input id="txtMsg" name="msg" type="text"><input id="btnEnviar" type="submit" value="enviar">
+        <input id="txtMsg" name="msg" type="text"><input id="btnEnviar" type="submit" value="Send">
     </label>
 </form>

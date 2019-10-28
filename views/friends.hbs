@@ -1,16 +1,18 @@
-<h1>{{#if logado}} Amigos de {{logado}} {{/if}} </h1>
-<div class="row">
+<div class="row" style="width: 100%;">
     <div class="col-md-4">
+        <h2 style="padding: 1rem 0; text-align: center;">{{#if logado}} {{logado}} Friends {{/if}} </h2>
         <ul class="list-group">
             {{#amigos}}
-            <li class="list-group-item">{{this.user}}
-                <button type="button" onclick="chat('{{this.id}}');" class="btn btn-primary">Conversar</button>
+            <li class="list-group-item" style="display: flex; justify-content: space-between; align-items: center;">
+                <p style="margin: 0;">{{this.user}}</p>
+                <button type="button" onclick="chat('{{this.id}}');" class="btn btn-dark">Chat</button>
             </li>
             {{/amigos}}
         </ul>
     </div>
     <div class="col-md-8">
-        <iframe style="width: 100%;" id="janela" src=""></iframe>
+        <h2 style="padding: 1rem 0; text-align: center;">{{#if logado}} Conversation {{/if}} </h2>
+        <iframe style="height: 50vh; width: 100%; border: 1px solid rgba(0,0,0,.125); border-radius: .25rem;" id="janela" src=""></iframe>
     </div>
 
 
