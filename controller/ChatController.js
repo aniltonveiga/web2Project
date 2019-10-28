@@ -5,11 +5,9 @@ var User = require("../model/User");
 
 exports.create_message = function(req, res) {
   //User.findOne();
-  return console.log(req.body)
   let sender = req.session.key,
     recipient = req.query.id,
     msg = req.body.msg;
-
 
   if (req.session && req.session.key) {
     User.findOne({ user: sender }, function(err, doc) {

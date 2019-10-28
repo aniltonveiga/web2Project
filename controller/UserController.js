@@ -2,33 +2,30 @@ var express = require("express");
 var router = express.Router();
 var userModel = require("../model/User");
 
-exports.create_user = function(req, res) {
-  //res.write(req.body.user);
+exports.register = function(req, res) {
   let user = req.body.user,
     email = req.body.mail,
     pass = req.body.pass;
-  let instanceUser = new userModel({ user: user, mail: email, pass: pass });
+
+  if (user.length === 0 || email.length === 0 || pass.length === 0) {
+    return res.render("register", {
+      error: "Todos os campos devem ser preenchidos"
+    });
+  }
+
+  //check if user exists
+  userModel.findOne({ mail: email }, function(err, doc) {
+    if (doc !== null) {
+      return res.render("register", {
+        error: "Usuário já cadastrado"
+      });
+    }
+  });
 
   userModel.create({ user: user, mail: email, pass: pass }, function(err) {
-    if (err) {
-      var erros = "[",
-        i = 0;
-      for (let ind in err.errors) {
-        if (i > 0) erros += ", ";
-        erros += JSON.stringify(err.errors[ind]);
-        i++;
-      }
-      if (err.code === 11000) {
-        if (i > 0) erros += ", ";
-        erros += JSON.stringify({ message: "Username or E-mail already exists." });
-      }
-      erros += "]";
-      res.send(erros);
-      return console.log(err);
-    }
-    res.send(
-      "[" + JSON.stringify({ message: "Registered Successfully." }) + "]"
-    );
+    return res.render("cadastrar", {
+      success: "Usuário cadastrado com sucesso"
+    });
   });
 };
 
@@ -65,26 +62,20 @@ const amigos = async function(params) {
 exports.login = function(req, res) {
   let user = req.body.user,
     pass = req.body.pass;
-  console.log(user, pass);
 
   if (user.length === 0 || pass.length === 0) {
-    return res.send('[{"message": "All fields are required."}]');
+    return res.render("index", { error: "Os campos não podem ser vázios" });
   }
 
   userModel.findOne({ user: user }, function(err, doc) {
-    console.log(err, doc);
     if (err || doc === null) {
-      return res.send(
-        "[" + JSON.stringify({ message: "Username or password incorrect." }) + "]"
-      );
+      return res.render("index", { error: "Usuário ou senha inválidos" });
     }
     if (doc.pass === pass) {
       req.session.key = user;
-      res.send("[" + JSON.stringify({ message: "Sucesso" }) + "]");
+      return res.redirect("/users/amigos");
     } else {
-      return res.send(
-        "[" + JSON.stringify({ message: "Username or password incorrect." }) + "]"
-      );
+      return res.render("index", { error: "Os campos não podem ser vázios" });
     }
   });
 };

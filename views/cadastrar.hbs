@@ -1,6 +1,6 @@
 <div class="card-body">
     <p class="title">Register on chat</p>
-    <form id="cadastro" method="post" class="form" action="/users/cadastrar">
+    <form id="cadastro" method="post" class="form" action="/users/register">
         <div class="form-group">
             <label for="name">Username:</label>
             <input name="user" class="form-control" type="text" placeholder="Username">
@@ -14,47 +14,23 @@
             <input name="pass" class="form-control" type="password" placeholder="Password">
 
         </div>
-        <ul id="resposta"></ul>
-        <button type="submit" class="btn btn-dark">Submit</button>
+        <p id="resposta">{{error}}</p>
+        <p id="resposta" style="color:green">{{success}}</p>
+
+        <button type="submit" class="btn btn-dark">Cadastrar</button>
     </form>
 </div>
 <div class="card-footer">Developed by Anilton Veiga & Mateus Saggioro</div>
-<script>
-    (function () {
 
-        let form = document.querySelector('#cadastro'),
-            httpRequest = new XMLHttpRequest(),
-            resposta = document.querySelector('#resposta');
-
-        if (window.XMLHttpRequest) {
-            httpRequest = new XMLHttpRequest();
-        } else if (window.ActiveXObject) {
-            httpRequest = new ActiveXObject("Microsoft.XMLHTTP");
-        }
-
-        form.addEventListener("submit", function (ev) {
-            ev.preventDefault();
-            resposta.innerHTML = "";
-            httpRequest.open("post", form.getAttribute('action'));
-            httpRequest.send(new FormData(this));
-
-            httpRequest.onreadystatechange = function () {
-                if (httpRequest.readyState === 4) {
-                    for (msg of JSON.parse(this.responseText))
-                        resposta.innerHTML += '<li>' + msg.message + '</li>';
-                }
-            }
-        })
-    }())
-</script>
 
 <style>
-    #resposta{
+    #resposta {
         list-style: none;
         color: red;
         padding: 0;
     }
-    .title{
+
+    .title {
         text-align: center;
         font-size: 1.5rem;
         padding-bottom: 20px;
