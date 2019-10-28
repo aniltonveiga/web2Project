@@ -1,6 +1,6 @@
 {{#unless logado}}
 <div class="card-body">
-    <p style="text-align: center; font-size: 1.5rem;padding-bottom: 20px;">Login on chat</p>
+    <p class="title">Login on chat</p>
     <form method="POST" id="login" class="form" action="/users/verificar">
         <div class="form-group">
             <label for="name">Username:</label>
@@ -11,11 +11,12 @@
             <input name="pass" class="form-control" type="password" placeholder="Password">
 
         </div>
-        <ul style="list-style: none; color: red; padding: 0" id="resposta"></ul>
+        <ul id="resposta"></ul>
         <button type="submit" class="btn btn-dark">Enter</button>
     </form>
 </div>
 <div class="card-footer">Developed by Anilton Veiga & Mateus Saggioro</div>
+
 <script>
     (function () {
 
@@ -48,5 +49,19 @@
         })
     }())
 </script>
+
+<style>
+    .title {
+        text-align: center;
+        font-size: 1.5rem;
+        padding-bottom: 20px;
+    }
+
+    #resposta {
+        list-style: none;
+        color: red;
+        padding: 0
+    }
+</style>
 
 {{/unless}}

@@ -1,15 +1,23 @@
+<div id="msgs">
+    {{#msgs }}
+    {{#ifEquals ../idGet this.sender }}
+    <p class="received"><span>{{this.message}}</span></p>
+    {{/ifEquals}}
+    {{#ifEquals ../idGet this.recipient }}
+    <p class="send"><span>{{this.message}}</span></p>
+    {{/ifEquals}}
+    {{/msgs}}
+</div>
+<form id="formMsg" action="/chat?id={{idGet}}" method="POST">
+    <label>
+        <input id="txtMsg" name="msg" type="text"><input id="btnEnviar" type="submit" value="Send">
+    </label>
+</form>
+
 <style>
-    body,
-    html {
-        margin: 0;
-        background-color: #fff;
-
-    }
-
     #msgs {
         padding-bottom: 10px;
     }
-
     #formMsg {
         width: 100%;
         position: fixed;
@@ -37,7 +45,9 @@
     }
 
     .send {
+        margin-top: 3px;
         text-align: right;
+        line-height: 2;
     }
 
     .received {
@@ -58,22 +68,3 @@
         background-color: #c5c5c5;
     }
 </style>
-
-<div id="msgs">
-
-    {{#msgs }}
-    {{#ifEquals ../idGet this.sender }}
-    <p class="received"><span>{{this.message}}</span></p>
-    {{/ifEquals}}
-    {{#ifEquals ../idGet this.recipient }}
-    <p class="send"><span>{{this.message}}</span></p>
-    {{/ifEquals}}
-    {{/msgs}}
-
-
-</div>
-<form id="formMsg" action="/chat?id={{idGet}}" method="POST">
-    <label>
-        <input id="txtMsg" name="msg" type="text"><input id="btnEnviar" type="submit" value="Send">
-    </label>
-</form>
