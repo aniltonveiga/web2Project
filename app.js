@@ -3,7 +3,6 @@ var createError = require("http-errors"),
   path = require("path"),
   cookieParser = require("cookie-parser"),
   bodyParser = require("body-parser"),
-  multer = require("multer")().single(),
   logger = require("morgan"),
   mongoose = require("mongoose"),
   hbs = require("hbs"),
@@ -40,7 +39,6 @@ app.use(
   })
 );
 
-app.use(multer);
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -66,7 +64,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render("error", { err });
+  res.render("error");
 });
 
 module.exports = app;
