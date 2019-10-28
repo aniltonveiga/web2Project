@@ -1,10 +1,48 @@
-<ul style="padding: 0; display: flex; flex-direction: column;">
+<ul class="listModal">
     {{#resultados}}
+<<<<<<< HEAD
     <li style="list-style: none; display: flex; flex-direction: row; justify-content: space-between; align-items: center; border-bottom: 1px solid #c5c5c5;">
         <p style="font-family: sans-serif;">{{user}}</p>
         <a style="font-family: sans-serif; font-size: .8rem; text-decoration: none; border-radius: .25rem; border: 1px solid transparent;color: #28a745; border-color: #28a745; padding: .375rem .75rem;" href="/users/add?id={{_id}}" data-dismiss="modal" aria-label="Close">
             Adicionar
         </a>
+=======
+    <li class="listItems">
+        <p class="textItems">{{user}}</p>
+        <a class="buttonList" href="/users/add?id={{_id}}">Adicionar</a>
+>>>>>>> 3d99f52a7c1c86acbf80824f5142c2a207fd57d3
     </li>
     {{/resultados}}
 </ul>
+
+<style>
+    .listModal {
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .listItems {
+        list-style: none;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #c5c5c5;
+    }
+
+    .textItems {
+        font-family: sans-serif;
+    }
+
+    .buttonList {
+        font-family: sans-serif;
+        font-size: .8rem;
+        text-decoration: none;
+        border-radius: .25rem;
+        border: 1px solid transparent;
+        color: #28a745;
+        border-color: #28a745;
+        padding: .375rem .75rem;
+    }
+</style>

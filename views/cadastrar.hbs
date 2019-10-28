@@ -1,5 +1,5 @@
 <div class="card-body">
-    <p style="text-align: center; font-size: 1.5rem;padding-bottom: 20px;">Register on chat</p>
+    <p class="title">Register on chat</p>
     <form id="cadastro" method="post" class="form" action="/users/cadastrar">
         <div class="form-group">
             <label for="name">Username:</label>
@@ -14,7 +14,7 @@
             <input name="pass" class="form-control" type="password" placeholder="Password">
 
         </div>
-        <ul style="list-style: none; color: red; padding: 0" id="resposta"></ul>
+        <ul id="resposta"></ul>
         <button type="submit" class="btn btn-dark">Submit</button>
     </form>
 </div>
@@ -47,3 +47,16 @@
         })
     }())
 </script>
+
+<style>
+    #resposta{
+        list-style: none;
+        color: red;
+        padding: 0;
+    }
+    .title{
+        text-align: center;
+        font-size: 1.5rem;
+        padding-bottom: 20px;
+    }
+</style>
