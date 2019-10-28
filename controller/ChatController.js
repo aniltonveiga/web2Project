@@ -51,7 +51,7 @@ exports.get_all_messages = function(req, res) {
           title: "Página de mensagens",
           idGet: idRecipient,
           msgs: docs,
-          layout: "chat"
+          layout: "chatContainer"
         });
       }
     );
