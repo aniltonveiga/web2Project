@@ -8,6 +8,7 @@
 
     #msgs {
         padding-bottom: 10px;
+        border: 2px
     }
 
     #formMsg {
@@ -60,20 +61,29 @@
 </style>
 
 <div id="msgs">
-
     {{#msgs }}
     {{#ifEquals ../idGet this.sender }}
-    <p class="received"><span>{{this.message}}</span></p>
+    <p class="received">Recebido: <span>{{this.message}}</span></p>
     {{/ifEquals}}
     {{#ifEquals ../idGet this.recipient }}
-    <p class="send"><span>{{this.message}}</span></p>
+    <p class="send">Enviado: <span>{{this.message}}</span></p>
     {{/ifEquals}}
     {{/msgs}}
-
-
 </div>
-<form id="formMsg" action="/chat?id={{idGet}}" method="POST">
+<form name="formMsg" id="formMsg" onsubmit="return validateForm()" action="/chat?id={{idGet}}" method="POST" enctype="multipart/form-data">
     <label>
-        <input id="txtMsg" name="msg" type="text"><input id="btnEnviar" type="submit" value="Send">
+        <input id="txtMsg" name="msg" type="text required ">
+        <input id="video" name="video" type="file">
+        <input class="btn btn-dark" id="btnEnviar" type="submit" value="Send">
     </label>
 </form>
+
+<script>
+    function validateForm() {
+        var x = document.forms["formMsg"]["msg"].value;
+        if (x == "") {
+            alert("Você precisa preencher uma mensagem");
+            return false;
+        }
+    }
+</script>
