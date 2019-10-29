@@ -21,7 +21,7 @@ exports.create_message = function(req, res) {
       }
 
       if (video) {
-        return console.log(video.path);
+        console.log(video.path);
         var tmp_path = req.file.path;
 
         /** The original name of the uploaded file

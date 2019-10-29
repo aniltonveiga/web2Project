@@ -26,6 +26,9 @@ mongoose.connect(mongoDB, { useNewUrlParser: true });
 mongoose.connection.on("connected", function() {
   console.log("Mongoose default connection open");
 });
+mongoose.set('useNewUrlParser', true);
+mongoose.set('useFindAndModify', false);
+mongoose.set('useCreateIndex', true);
 app.use(bodyParser.json());
 // for parsing application/xwww-
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -67,4 +70,6 @@ app.use(function(err, req, res, next) {
   res.render("error");
 });
 
+
+app.listen(process.env.PORT|| 5000 );
 module.exports = app;
