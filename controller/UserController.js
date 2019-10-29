@@ -8,7 +8,7 @@ exports.register = function(req, res) {
     pass = req.body.pass;
 
   if (user.length === 0 || email.length === 0 || pass.length === 0) {
-    return res.render("register", {
+    return res.render("cadastrar", {
       error: "Todos os campos devem ser preenchidos"
     });
   }
@@ -16,7 +16,7 @@ exports.register = function(req, res) {
   //check if user exists
   userModel.findOne({ mail: email }, function(err, doc) {
     if (doc !== null) {
-      return res.render("register", {
+      return res.render("cadastrar", {
         error: "Usuário já cadastrado"
       });
     }
