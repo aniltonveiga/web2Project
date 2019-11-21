@@ -11,6 +11,7 @@ var createError = require("http-errors"),
   usersRouter = require("./routes/user"),
   chatRouter = require("./routes/chat"),
   session = require("express-session"),
+  router = express.Router(),
   cors = require("cors");
 
 var app = express();
@@ -41,6 +42,9 @@ mongoose.connect(mongoDB, { useNewUrlParser: true });
 mongoose.connection.on("connected", function() {
   console.log("Mongoose default connection open");
 });
+mongoose.set("useNewUrlParser", true);
+mongoose.set("useFindAndModify", false);
+mongoose.set("useCreateIndex", true);
 
 app.use(bodyParser.json());
 // for parsing application/xwww-
@@ -63,6 +67,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 //app.use(morgan('dev'));
+router.get("/", (req, res) => {
+  return res.status(200).send({ msg: "Api 2.0" });
+});
 
 app.use("/api", indexRouter);
 app.use("/api/users", usersRouter);
