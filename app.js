@@ -50,6 +50,7 @@ mongoose.connection.on("connected", function() {
 });
 
 app.use(bodyParser.json());
+app.set("trust proxy", 1);
 // for parsing application/xwww-
 app.use(bodyParser.urlencoded({ extended: true }));
 
