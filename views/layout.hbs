@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{title}}</title>
+    
+      <link rel='stylesheet' href='/stylesheets/norm.css' />
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1 class="logo">chat legal</h1>
+          <nav class="menu">
+          <ul>
+            <li><a href="/">início</a></li>
+            {{#unless logado }}<li><a href="/users/cadastrar">cadastro</a></li>  {{/unless}}
+            {{#if logado }}<li><a href="/users/amigos">amigos</a> </li>{{/if}}
+            <li><a href="/users/sair">sair</a></li>
+          </ul>
+          </nav>
+      </header>
+
+    <div class="main">
+      {{{body}}}
+    </div>
+
+     </div>
+  </body>
+</html>

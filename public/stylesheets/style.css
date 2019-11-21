@@ -1,0 +1,93 @@
+body {
+  margin: 0 auto;
+  font: 14px "Comic Sans MS", Helvetica, Arial, sans-serif;
+  color: #fff;
+}
+iframe{
+  color: #fff;
+  min-height: 300px;
+}
+h1 .logo{
+  margin-top: 0;
+  margin-block-start: 0; 
+}
+a {
+  color: #00B7FF;
+}
+.wrapper{
+  margin: 0 auto;
+  max-width: 800px;
+  background: #7a297a;
+  color: #fff;
+  border-radius: 5px;
+  height: 100vh;
+}
+.logo{
+  text-align: center;
+}
+.menu{
+  margin-left: 10px;
+}
+.menu li{
+  display: inline-block;
+  list-style: none;
+}
+.menu li a{
+  text-decoration: none;
+  font-size: 1.3rem;
+  background: #fff;
+  color: #7a297a;
+  padding: 10px 5px;
+  border-radius: 2px;
+  border: 2px solid transparent;
+}
+.menu li a:hover{
+  border: 2px dashed rgb(193, 72, 209);
+}
+.main{
+  padding-left: 0.5rem;
+  padding-right: 0.2rem;
+}
+.conteudo{
+  padding-top: 2em;
+}
+.friends{
+  display: grid;
+  grid-template-columns: 30% 69%;
+  grid-column-gap: 0.5%;
+}
+#janela{
+  margin-top: 1em;
+  width:100%;
+}
+.form-geral{
+  display: grid;
+  grid-template-columns: auto;
+  grid-row-gap: 2rem;
+  animation: pulse 5s infinite;
+}
+.campo input[type='submit']{
+  border: 2px solid rgb(0, 255, 85);
+  padding: 5px;
+  color: #fff;
+  border-radius: 5px;
+  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+}
+.form-destacado{
+  padding: 10px;
+  text-align: center;
+  border: 5px dotted rgb(207, 66, 97); 
+  vertical-align: middle;
+  max-width: 50%;
+  margin: auto;
+  margin-top: 4rem; 
+}
+
+@keyframes pulse {
+  0% {
+    background-color:  rgb(193, 72, 209);
+  }
+  100% {
+    background-color: #FF4136;
+  }
+}
