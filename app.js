@@ -15,7 +15,11 @@ var createError = require("http-errors"),
 const MongoStore = require("connect-mongo")(session);
 
 var app = express();
-let whitelist = ["http://localhost:3000", "http://127.0.0.1:3000"];
+let whitelist = [
+  "https://web2front.herokuapp.com/",
+  "http://localhost:3000",
+  "http://127.0.0.1:3000"
+];
 var corsOptions = {
   origin: function(origin, callback) {
     if (whitelist.indexOf(origin) !== -1) {
@@ -27,7 +31,9 @@ var corsOptions = {
   credentials: true,
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 };
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
+
+app.use(cors());
 
 // Motor de template
 app.set("views", path.join(__dirname, "views"));
@@ -87,6 +93,7 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   //res.render('error');
 });
+
 app.listen(process.env.PORT || 5000);
 
 module.exports = app;
