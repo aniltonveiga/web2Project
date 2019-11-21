@@ -6,6 +6,7 @@
     "start": "nodemon app.js"
   },
   "dependencies": {
+    "body-parser": "^1.19.0",
     "chai": "^4.2.0",
     "cookie-parser": "~1.4.3",
     "cors": "^2.8.5",
@@ -24,7 +25,6 @@
     "sinon-mongoose": "^2.3.0"
   },
   "devDependencies": {
-    "body-parser": "^1.19.0",
     "method-override": "^3.0.0",
     "morgan": "^1.9.1"
   }
