@@ -98,7 +98,7 @@ exports.login = function(req, res) {
         expiresIn: "1h"
       });
 
-      res.cookie("token", token, { httpOnly: true }).sendStatus(200);
+      res.cookie("token", token).sendStatus(200);
       console.log(token);
     } else {
       return res.send(
