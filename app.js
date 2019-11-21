@@ -11,8 +11,8 @@ var createError = require("http-errors"),
   usersRouter = require("./routes/user"),
   chatRouter = require("./routes/chat"),
   session = require("express-session"),
-  router = express.Router(),
   cors = require("cors");
+const MongoStore = require("connect-mongo")(session);
 
 var app = express();
 let whitelist = ["http://localhost:3000", "http://127.0.0.1:3000"];
@@ -42,9 +42,6 @@ mongoose.connect(mongoDB, { useNewUrlParser: true });
 mongoose.connection.on("connected", function() {
   console.log("Mongoose default connection open");
 });
-mongoose.set("useNewUrlParser", true);
-mongoose.set("useFindAndModify", false);
-mongoose.set("useCreateIndex", true);
 
 app.use(bodyParser.json());
 // for parsing application/xwww-
@@ -54,6 +51,10 @@ app.use(
   session({
     secret: "xxxx222",
     resave: false,
+    store: new MongoStore({
+      url:
+        "mongodb+srv://teste:teste@cluster0-tfmad.gcp.mongodb.net/test?retryWrites=true&w=majority"
+    }),
     saveUninitialized: true,
     cookie: { secure: false }
   })
@@ -87,7 +88,6 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   //res.render('error');
 });
-
 app.listen(process.env.PORT || 5000);
 
 module.exports = app;
