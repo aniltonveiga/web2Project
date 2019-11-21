@@ -52,8 +52,7 @@ app.use(
     secret: "xxxx222",
     resave: false,
     store: new MongoStore({
-      url:
-        "mongodb+srv://teste:teste@cluster0-tfmad.gcp.mongodb.net/test?retryWrites=true&w=majority"
+      mongooseConnection: mongoose.connection
     }),
     saveUninitialized: true,
     cookie: { secure: false }
