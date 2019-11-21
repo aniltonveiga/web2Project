@@ -67,9 +67,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 //app.use(morgan('dev'));
-router.get("/", (req, res) => {
-  return res.status(200).send({ msg: "Api 2.0" });
-});
 
 app.use("/api", indexRouter);
 app.use("/api/users", usersRouter);
