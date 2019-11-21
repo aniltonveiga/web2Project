@@ -22,9 +22,7 @@
     "multer": "^1.4.1",
     "nodemon": "^1.19.0",
     "sinon": "^7.3.2",
-    "sinon-mongoose": "^2.3.0"
-  },
-  "devDependencies": {
+    "sinon-mongoose": "^2.3.0",
     "method-override": "^3.0.0",
     "morgan": "^1.9.1"
   }
