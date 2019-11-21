@@ -16,7 +16,7 @@ const MongoStore = require("connect-mongo")(session);
 
 var app = express();
 let whitelist = [
-  "https://web2front.herokuapp.com/",
+  "https://web2front.herokuapp.com",
   "http://localhost:3000",
   "http://127.0.0.1:3000"
 ];
